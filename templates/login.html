@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="auth-shell">
+    <div class="auth-copy">
+        <div class="eyebrow">WELCOME BACK</div>
+        <h1 class="auth-title">Access your learning space with clarity.</h1>
+        <p class="auth-text">
+            Sign in to continue learning, review progress, check assessments, and move through your role-based portal with ease.
+        </p>
+
+        <div class="auth-info-card">
+            <h3>Demo Accounts</h3>
+            <ul class="auth-info-list">
+                <li><strong>Admin:</strong> admin01 / Admin@123</li>
+                <li><strong>Instructor:</strong> anna.instructor / Anna@123</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="auth-panel">
+        <div class="card auth-card">
+            <div class="auth-card-top">
+                <span class="panel-tag">Login</span>
+            </div>
+
+            <h2>Sign in</h2>
+            <p class="auth-subtext">Enter your account details to continue.</p>
+
+            <form method="POST">
+                <label>Username</label>
+                <input type="text" name="username" required>
+
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <button type="submit" class="btn auth-btn">Login</button>
+            </form>
+
+            <p class="helper-text">
+                New learner? <a class="link-btn" href="{{ url_for('register') }}">Create an account</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

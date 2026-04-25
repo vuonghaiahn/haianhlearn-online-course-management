@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Course Catalog</h2>
+
+    <div class="course-grid">
+        {% for course in courses %}
+        <div class="course-card">
+            <h3>{{ course.course_name }}</h3>
+            <p>{{ course.description }}</p>
+            <p><strong>Instructor:</strong> {{ course.instructor_name }}</p>
+
+            {% if course.is_enrolled %}
+                <button class="btn btn-disabled" disabled>Already Enrolled</button>
+            {% else %}
+                <form method="POST" action="{{ url_for('learner_enroll', course_id=course.course_id) }}">
+                    <button type="submit" class="btn">Enroll</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

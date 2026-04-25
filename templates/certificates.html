@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>My Certificates</h2>
+
+    {% if certificates %}
+    <table>
+        <tr>
+            <th>Certificate ID</th>
+            <th>Course</th>
+            <th>Certificate Code</th>
+            <th>Issue Date</th>
+        </tr>
+        {% for cert in certificates %}
+        <tr>
+            <td>{{ cert.certificate_id }}</td>
+            <td>{{ cert.course_name }}</td>
+            <td>{{ cert.certificate_code }}</td>
+            <td>{{ cert.issue_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No certificates available yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

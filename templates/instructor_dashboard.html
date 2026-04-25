@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Instructor Dashboard</h2>
+    <h3>Teaching Load</h3>
+
+    {% if teaching_load %}
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Total Enrolled Learners</th>
+            <th>Total Completed Learners</th>
+        </tr>
+        {% for row in teaching_load %}
+        <tr>
+            <td>{{ row.course_name }}</td>
+            <td>{{ row.total_enrolled_learners }}</td>
+            <td>{{ row.total_completed_learners }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No teaching data available.</p>
+    {% endif %}
+</div>
+{% endblock %}

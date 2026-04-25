@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Instructor Reports</h2>
+
+    {% if rows %}
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Learner</th>
+            <th>Completed Lectures</th>
+            <th>Total Lectures</th>
+            <th>Progress %</th>
+            <th>Enrollment Status</th>
+            <th>Best Score</th>
+            <th>Certificate</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row.course_name }}</td>
+            <td>{{ row.learner_name }}</td>
+            <td>{{ row.completed_lectures }}</td>
+            <td>{{ row.total_lectures }}</td>
+            <td>{{ row.completion_percentage }}%</td>
+            <td>{{ row.enrollment_status }}</td>
+            <td>{{ row.best_assessment_score }}</td>
+            <td>{{ row.has_certificate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No report data available.</p>
+    {% endif %}
+</div>
+{% endblock %}

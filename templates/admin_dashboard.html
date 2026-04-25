@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-hero">
+    <div>
+        <div class="eyebrow">ADMIN DASHBOARD</div>
+        <h1 class="dashboard-title">Administrative control with a clear reporting layer.</h1>
+        <p class="dashboard-text">
+            Manage learners, add courses, review enrollments, and access structured reporting features from one central dashboard.
+        </p>
+    </div>
+
+    <div class="actions">
+        <a class="btn" href="{{ url_for('admin_reports') }}">Open Reports</a>
+        <a class="btn btn-outline" href="{{ url_for('admin_learners') }}">Manage Learners</a>
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat-box">
+        <h3>{{ summary.total_learners }}</h3>
+        <p>Learners</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ summary.total_instructors }}</h3>
+        <p>Instructors</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ summary.total_courses }}</h3>
+        <p>Courses</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ summary.total_enrollments }}</h3>
+        <p>Enrollments</p>
+    </div>
+</div>
+
+<div class="action-grid">
+    <article class="dashboard-action-card">
+        <span class="panel-tag">Learner Management</span>
+        <h3>Add or update learner records</h3>
+        <p>Maintain learner profiles, contact details, and core administrative information.</p>
+        <a class="btn" href="{{ url_for('admin_learners') }}">Manage Learners</a>
+    </article>
+
+    <article class="dashboard-action-card">
+        <span class="panel-tag">Course Setup</span>
+        <h3>Create new course records</h3>
+        <p>Add course titles, descriptions, and assign instructors to expand the platform catalog.</p>
+        <a class="btn btn-outline" href="{{ url_for('add_course') }}">Add Course</a>
+    </article>
+
+    <article class="dashboard-action-card">
+        <span class="panel-tag">Enrollment Data</span>
+        <h3>Review learner enrollment activity</h3>
+        <p>Track who enrolled, when the enrollment occurred, and how course status is changing.</p>
+        <a class="btn btn-outline" href="{{ url_for('admin_enrollments') }}">View Enrollments</a>
+    </article>
+
+    <article class="dashboard-action-card">
+        <span class="panel-tag">Reporting</span>
+        <h3>Access platform-level summaries</h3>
+        <p>Check active courses, teaching load, learner totals, and broader administrative insights.</p>
+        <a class="btn btn-outline" href="{{ url_for('admin_reports') }}">View Reports</a>
+    </article>
+</div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-hero">
+    <div>
+        <div class="eyebrow">LEARNER DASHBOARD</div>
+        <h1 class="dashboard-title">Your learning journey, organized beautifully.</h1>
+        <p class="dashboard-text">
+            Review course progress, check your strongest assessment result, and jump directly into the next lecture flow.
+        </p>
+    </div>
+
+    <div class="actions">
+        <a class="btn" href="{{ url_for('learner_courses') }}">Browse Courses</a>
+        <a class="btn btn-outline" href="{{ url_for('learner_certificates') }}">View Certificates</a>
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat-box">
+        <h3>{{ progress_rows|length }}</h3>
+        <p>Enrolled Courses</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ progress_rows|selectattr('has_certificate', 'equalto', 'Yes')|list|length }}</h3>
+        <p>Certificates</p>
+    </div>
+    <div class="stat-box">
+        <h3>
+            {% if progress_rows %}
+                {{ progress_rows|map(attribute='best_assessment_score')|max }}
+            {% else %}
+                0
+            {% endif %}
+        </h3>
+        <p>Best Score</p>
+    </div>
+    <div class="stat-box">
+        <h3>
+            {% if progress_rows %}
+                {{ progress_rows|map(attribute='completion_percentage')|sum / progress_rows|length|round(0) }}
+            {% else %}
+                0
+            {% endif %}%
+        </h3>
+        <p>Average Progress</p>
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-inline-header">
+        <h3>My Learning Progress</h3>
+        <span class="section-meta">Live overview of enrolled courses</span>
+    </div>
+
+    {% if progress_rows %}
+    <div class="data-grid">
+        {% for row in progress_rows %}
+        <article class="data-card">
+            <div class="data-card-top">
+                <div>
+                    <h4>{{ row.course_name }}</h4>
+                    <p>{{ row.completed_lectures }} of {{ row.total_lectures }} lectures completed</p>
+                </div>
+                <span class="badge {% if row.has_certificate == 'Yes' %}badge-success{% else %}badge-pending{% endif %}">
+                    {{ row.has_certificate }} certificate
+                </span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ row.completion_percentage }}%;"></div>
+            </div>
+
+            <div class="data-card-metrics">
+                <div>
+                    <span class="metric-kicker">Progress</span>
+                    <strong>{{ row.completion_percentage }}%</strong>
+                </div>
+                <div>
+                    <span class="metric-kicker">Best Score</span>
+                    <strong>{{ row.best_assessment_score }}</strong>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a class="btn" href="{{ url_for('learner_course_detail', course_id=row.course_id) }}">Open Course</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <h3>No enrolled courses yet</h3>
+        <p>Start by exploring the course catalog and enrolling in your first course.</p>
+        <a class="btn" href="{{ url_for('learner_courses') }}">Browse Courses</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

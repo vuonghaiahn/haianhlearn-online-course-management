@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HaiAnhLearn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="site-shell">
+        <header class="topbar-wrap">
+            <nav class="topbar">
+                <div class="topbar-left">
+                    <a href="{{ url_for('index') }}" class="brand-mark">HaiAnhLearn</a>
+                </div>
+
+                <div class="topbar-right">
+                    {% if session.get('user_id') %}
+                        {% if session.get('role') == 'learner' %}
+                            <a href="{{ url_for('learner_dashboard') }}">Dashboard</a>
+                            <a href="{{ url_for('learner_courses') }}">Courses</a>
+                            <a href="{{ url_for('learner_certificates') }}">Certificates</a>
+                        {% elif session.get('role') == 'instructor' %}
+                            <a href="{{ url_for('instructor_dashboard') }}">Dashboard</a>
+                            <a href="{{ url_for('instructor_reports') }}">Reports</a>
+                        {% elif session.get('role') == 'admin' %}
+                            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+                            <a href="{{ url_for('admin_learners') }}">Learners</a>
+                            <a href="{{ url_for('add_course') }}">Add Course</a>
+                            <a href="{{ url_for('admin_enrollments') }}">Enrollments</a>
+                            <a href="{{ url_for('admin_reports') }}">Reports</a>
+                        {% endif %}
+                        <span class="nav-pill subtle">{{ session.get('username') }} · {{ session.get('role') }}</span>
+                        <a href="{{ url_for('logout') }}" class="nav-pill">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                        <a href="{{ url_for('register') }}" class="nav-pill">Register</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
+
+        <main class="page-shell">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-stack">
+                        {% for category, message in messages %}
+                            <div class="flash {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

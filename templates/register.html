@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="auth-shell">
+    <div class="auth-copy">
+        <div class="eyebrow">LEARNER REGISTRATION</div>
+        <h1 class="auth-title">Create your learning account in minutes.</h1>
+        <p class="auth-text">
+            Register as a learner to browse courses, track lecture progress, submit assessment results, and receive certificates after completion.
+        </p>
+
+        <div class="auth-info-card">
+            <h3>What you can do</h3>
+            <ul class="auth-info-list">
+                <li>Browse available courses</li>
+                <li>Enroll with one click</li>
+                <li>Complete lectures and assessments</li>
+                <li>Track certificates in one place</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="auth-panel">
+        <div class="card auth-card">
+            <div class="auth-card-top">
+                <span class="panel-tag">Register</span>
+            </div>
+
+            <h2>Create learner account</h2>
+            <p class="auth-subtext">Fill in your details to start using HaiAnhLearn.</p>
+
+            <form method="POST">
+                <label>Full Name</label>
+                <input type="text" name="learner_name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Phone Number</label>
+                <input type="text" name="phone_number" required>
+
+                <label>Username</label>
+                <input type="text" name="username" required>
+
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" required>
+
+                <button type="submit" class="btn auth-btn">Register as Learner</button>
+            </form>
+
+            <p class="helper-text">
+                Already have an account? <a class="link-btn" href="{{ url_for('login') }}">Login here</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

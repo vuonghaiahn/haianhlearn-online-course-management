@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid-2">
+    <div class="card form-card">
+        <h2>Add Learner</h2>
+        <form method="POST">
+            <label>Full Name</label>
+            <input type="text" name="learner_name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Phone Number</label>
+            <input type="text" name="phone_number" required>
+
+            <button type="submit" class="btn">Add Learner</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Learner List</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+            {% for learner in learners %}
+            <tr>
+                <td>{{ learner.learner_id }}</td>
+                <td>{{ learner.learner_name }}</td>
+                <td>{{ learner.email }}</td>
+                <td>{{ learner.phone_number }}</td>
+                <td>
+                    <a class="link-btn" href="{{ url_for('edit_learner', learner_id=learner.learner_id) }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

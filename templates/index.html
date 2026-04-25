@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-copy">
+        <div class="eyebrow">ONLINE COURSE MANAGEMENT SYSTEM</div>
+
+        <h1 class="hero-title">
+            Learn with elegance.<br>
+            Track with clarity.
+        </h1>
+
+        <p class="hero-text">
+            HaiAnhLearn is a modern learning portal built for learners, instructors, and administrators.
+            Explore courses, track lecture progress, submit assessments, and unlock certificates through one polished academic platform.
+        </p>
+
+        <div class="actions">
+            <a class="btn" href="{{ url_for('login') }}">Login</a>
+            <a class="btn btn-outline" href="{{ url_for('register') }}">Register as Learner</a>
+        </div>
+
+        <div class="hero-metrics">
+            <div class="metric-card">
+                <span class="metric-number">3</span>
+                <span class="metric-label">User Roles</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">100%</span>
+                <span class="metric-label">Progress Tracking</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-number">24/7</span>
+                <span class="metric-label">Assessment Access</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="hero-panel hero-panel-main">
+            <div class="panel-header">
+                <span class="panel-tag">Learner Experience</span>
+                <span class="panel-status">Live</span>
+            </div>
+
+            <h3>Progress-centered learning flow</h3>
+            <p>
+                Enroll in courses, complete lectures, submit assessment results, and unlock certificates through a clean and guided learner journey.
+            </p>
+
+            <div class="mock-progress">
+                <div class="mock-progress-top">
+                    <span>Lecture Progress Preview</span>
+                    <span>98%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 98%;"></div>
+                </div>
+            </div>
+
+            <div class="mini-grid">
+                <div class="mini-card">
+                    <strong>Assessment</strong>
+                    <span>Submit results and track attempts</span>
+                </div>
+                <div class="mini-card">
+                    <strong>Certificate</strong>
+                    <span>Generated after completion</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-panel hero-panel-soft">
+            <div class="panel-header">
+                <span class="panel-tag">Platform Insight</span>
+            </div>
+
+            <h3>Reports that feel immediate</h3>
+            <p>
+                Monitor active courses, learner counts, and instructor teaching load through focused dashboards and structured reporting views.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="feature-section">
+    <div class="section-heading">
+        <div class="eyebrow">WHY HAIANHLEARN</div>
+        <h2>Built around real learning workflows</h2>
+    </div>
+
+    <div class="feature-grid">
+        <article class="feature-card">
+            <h3>Role-based portal</h3>
+            <p>
+                Separate interfaces for learners, instructors, and administrators make the platform feel realistic, structured, and professional.
+            </p>
+        </article>
+
+        <article class="feature-card">
+            <h3>Progress and assessment flow</h3>
+            <p>
+                Lecture completion, assessment results, and certificate generation are reflected directly in the web experience.
+            </p>
+        </article>
+
+        <article class="feature-card">
+            <h3>Clean reporting layer</h3>
+            <p>
+                Views, procedures, functions, and triggers support dashboards and reports without making the interface feel technical or cluttered.
+            </p>
+        </article>
+    </div>
+</section>
+{% endblock %}

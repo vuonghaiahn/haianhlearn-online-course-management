@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Admin Reports</h2>
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>{{ summary.total_learners }}</h3>
+            <p>Total Learners</p>
+        </div>
+        <div class="stat-box">
+            <h3>{{ active_courses|length }}</h3>
+            <p>Active Courses</p>
+        </div>
+        <div class="stat-box">
+            <h3>{{ summary.total_instructors }}</h3>
+            <p>Total Instructors</p>
+        </div>
+        <div class="stat-box">
+            <h3>{{ summary.total_enrollments }}</h3>
+            <p>Total Enrollments</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Active Courses</h3>
+    <table>
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Total Enrollments</th>
+        </tr>
+        {% for row in active_courses %}
+        <tr>
+            <td>{{ row.course_id }}</td>
+            <td>{{ row.course_name }}</td>
+            <td>{{ row.total_enrollments }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="card">
+    <h3>Instructor Teaching Load</h3>
+    <table>
+        <tr>
+            <th>Instructor</th>
+            <th>Course</th>
+            <th>Total Enrolled Learners</th>
+            <th>Total Completed Learners</th>
+        </tr>
+        {% for row in teaching_load %}
+        <tr>
+            <td>{{ row.instructor_name }}</td>
+            <td>{{ row.course_name }}</td>
+            <td>{{ row.total_enrolled_learners }}</td>
+            <td>{{ row.total_completed_learners }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

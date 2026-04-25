@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-hero course-hero">
+    <div>
+        <div class="eyebrow">COURSE DETAIL</div>
+        <h1 class="dashboard-title">{{ course.course_name }}</h1>
+        <p class="dashboard-text">{{ course.description }}</p>
+    </div>
+
+    <div class="actions">
+        <a class="btn btn-outline" href="{{ url_for('learner_dashboard') }}">Back to Dashboard</a>
+        {% if assessment %}
+        <a class="btn" href="{{ url_for('learner_assessment', course_id=course.course_id) }}">Assessment</a>
+        {% endif %}
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat-box">
+        <h3>{{ progress_summary.completed_lectures }}</h3>
+        <p>Completed Lectures</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ progress_summary.total_lectures }}</h3>
+        <p>Total Lectures</p>
+    </div>
+    <div class="stat-box">
+        <h3>{{ progress_summary.completion_percentage }}%</h3>
+        <p>Progress</p>
+    </div>
+    <div class="stat-box">
+        {% if certificate %}
+            <h3>Issued</h3>
+            <p>Certificate Ready</p>
+        {% else %}
+            <h3>Pending</h3>
+            <p>Certificate Status</p>
+        {% endif %}
+    </div>
+</div>
+
+{% if certificate %}
+<div class="card">
+    <div class="section-inline-header">
+        <h3>Certificate Information</h3>
+        <span class="section-meta">Generated automatically after completion</span>
+    </div>
+
+    <div class="certificate-panel">
+        <div>
+            <span class="metric-kicker">Certificate Code</span>
+            <strong>{{ certificate.certificate_code }}</strong>
+        </div>
+        <div>
+            <span class="metric-kicker">Issue Date</span>
+            <strong>{{ certificate.issue_date }}</strong>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="card">
+    <div class="section-inline-header">
+        <h3>Course Lectures</h3>
+        <span class="section-meta">Mark each lecture when you finish it</span>
+    </div>
+
+    {% if lectures %}
+    <div class="lecture-list">
+        {% for lecture in lectures %}
+        <article class="lecture-item">
+            <div class="lecture-copy">
+                <div class="lecture-order">Lecture {{ lecture.lecture_order }}</div>
+                <h4>{{ lecture.title }}</h4>
+                <p>{{ lecture.content }}</p>
+            </div>
+
+            <div class="lecture-side">
+                {% if lecture.is_completed %}
+                    <span class="badge badge-success">Completed</span>
+                    <button class="btn btn-disabled" disabled>Completed</button>
+                {% else %}
+                    <span class="badge badge-pending">Not Completed</span>
+                    <form method="POST" action="{{ url_for('complete_lecture', lecture_id=lecture.lecture_id) }}">
+                        <button type="submit" class="btn">Mark Complete</button>
+                    </form>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <h3>No lectures found</h3>
+        <p>This course does not have lecture content yet.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
