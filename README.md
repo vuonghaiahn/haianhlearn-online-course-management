@@ -76,6 +76,23 @@ HaiAnhLearn/
 ├── static/
 │   └── style.css
 ├── templates/
+│   ├── add_course.html
+│   ├── admin_dashboard.html
+│   ├── admin_learners.html
+│   ├── assessment.html
+│   ├── base.html
+│   ├── certificates.html
+│   ├── course_catalog.html
+│   ├── edit_learner.html
+│   ├── enrollments.html
+│   ├── index.html
+│   ├── instructor_dashboard.html
+│   ├── instructor_reports.html
+│   ├── learner_course_detail.html
+│   ├── learner_dashboard.html
+│   ├── login.html
+│   ├── register.html
+│   └── reports.html
 ├── .env.example
 ├── .gitignore
 ├── app.py
